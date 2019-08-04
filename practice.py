@@ -5,8 +5,11 @@ from os import listdir
 import pandas as pd
 
 
-list_of_files = [
-    file for file in listdir('./data') if isfile(join('./data', file))]
+list_of_files = []
+
+for file in listdir('./data'):
+    if isfile(join('./data', file)):
+        list_of_files.append(file)
 
 for item in list_of_files:
     item_name = item.split('.')[0].lower()
@@ -25,5 +28,6 @@ def get_adults(df):
         elif df.loc[item]['Age'] < 18:
             minors = minors + 1
     return adults, minors
+
 
 pdb.set_trace()
