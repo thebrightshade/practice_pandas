@@ -1,4 +1,5 @@
 
+import pdb
 from os.path import isfile, join
 from os import listdir
 import pandas as pd
@@ -15,4 +16,14 @@ for item in list_of_files:
     exec("{}_dict = {}.T.to_dict()".format(item_name, item_name))
 
 
-import pdb; pdb.set_trace()
+def get_adults(df):
+    adults = 0
+    minors = 0
+    for item in df.index:
+        if df.loc[item]['Age'] >= 18:
+            adults = adults + 1
+        elif df.loc[item]['Age'] < 18:
+            minors = minors + 1
+    return adults, minors
+
+pdb.set_trace()
